@@ -2,7 +2,6 @@
 
 Ovaj projekat predstavlja **decentralizovanu aplikaciju (DApp)** koja implementira sistem prag-enkripcije (*Threshold Encryption*) i distribuiranog dešifrovanja. Aplikacija omogućava bezbedno čuvanje tajnih poruka na taj način što se poruka može rekonstruisati isključivo ako sarađuje najmanje **M** od ukupno **N** predefinisanih čuvara ključa.
 
-Projekat je razvijen u sklopu praktičnog dela ispitnih obaveza i u potpunosti ispunjava sve zahteve **Projektnog zadatka 7**.
 
 ---
 
