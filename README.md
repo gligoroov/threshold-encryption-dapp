@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# 🔒 Threshold Encryption & Distributed Decryption DApp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Ovaj projekat predstavlja **decentralizovanu aplikaciju (DApp)** koja implementira sistem prag-enkripcije (*Threshold Encryption*) i distribuiranog dešifrovanja. Aplikacija omogućava bezbedno čuvanje tajnih poruka na taj način što se poruka može rekonstruisati isključivo ako sarađuje najmanje **M** od ukupno **N** predefinisanih čuvara ključa.
 
-## Available Scripts
+Projekat je razvijen u sklopu praktičnog dela ispitnih obaveza i u potpunosti ispunjava sve zahteve **Projektnog zadatka 7**.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 Ključne Karakteristike
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Decentralizovano upravljanje poverenjem:** Pametni ugovor na blockchainu čuva isključivo metapodatke o poruci (identifikator, vlasnika, prag M, listu čuvara i kriptografski hash), dok se sam sadržaj tajne nikada ne skladišti na mreži.
+- **Klijentska simulacija Shamir-ovog deljenja tajne:** Pri registraciji poruke, privatni ključ se deli na N delova (shares). Manje od M delova ne pruža nikakvu informaciju o originalnoj poruci.
+- **Integracija sa Web3 tehnologijama:** Kompletna koordinacija procesa, glasanje čuvara i revizorski trag obezbeđeni su putem `ethers.js` biblioteke i MetaMask novčanika.
+- **Sepolia Testnet Deployment:** Pametni ugovor je uspešno postavljen i verifikovan na zvaničnoj Ethereum Sepolia testnoj mreži.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🛠️ Tehnološki Stak
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Sloj | Tehnologije |
+|---|---|
+| Pametni ugovori | Solidity, Remix IDE / Hardhat |
+| Front-end | React.js, HTML5, CSS3 |
+| Blockchain interakcija | Ethers.js (v5), MetaMask |
+| Mreža | Ethereum Sepolia Testnet |
+| Testiranje | Remix Solidity Unit Testing / Mocha & Chai |
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 💻 Pokretanje Projekta u Lokalnom Okruženju
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Pratite sledeće korake kako biste pokrenuli aplikaciju na svom računaru.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 1. Instalacija zavisnosti
 
-### `npm run eject`
+Otvorite terminal, pozicionirajte se u koren foldera projekta, a zatim instalirajte potrebne pakete:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 2. Pokretanje lokalnog razvojnog servera
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Pokrenite React aplikaciju sledećom komandom:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm start
+```
 
-## Learn More
+Aplikacija će automatski biti dostupna u vašem browseru na adresi: `http://localhost:3000`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 3. Podešavanje MetaMask-a
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Uverite se da je vaš MetaMask novčanik prebačen na **Sepolia** RPC testnu mrežu.
+- Za testiranje scenarija sa više čuvara (`M > 1`), kreirajte dodatne naloge (Account 2, Account 3) unutar MetaMask-a i prebacite im minimalnu količinu SepoliaETH-a za pokrivanje mrežnih naknada (gas fee).
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🧪 Pregled Testova (Unit & E2E)
 
-### Analyzing the Bundle Size
+Projekat sadrži automatizovane jedinične testove koji pokrivaju:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **Validne scenarije:** Uspešnu registraciju zaštićene poruke i prihvatanje glasova autorizovanih čuvara.
+- **Nevalidne scenarije i kontrolu pristupa:** Sprečavanje glasanja od strane adresa koje nisu na listi N čuvara i blokiranje rekonstrukcije poruke ako prag M nije dostignut.
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**End-to-End (E2E)** provera je uspešno potvrđena kroz korisnički interfejs simulacijom nezavisnih potpisa preko različitih MetaMask naloga direktno na Sepolia mreži.
